@@ -1,6 +1,8 @@
 import React from 'react';
 import SplitPane from 'react-split-pane';
 
+require("./ReactSplitPane.css");
+
 export class App extends React.Component {
   render() {
     return (

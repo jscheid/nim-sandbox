@@ -49,8 +49,12 @@
     "webpack-hot-middleware": "^2.0.0"
   },
   "dependencies": {
+    "css-loader": "^0.22.0",
+    "extract-text-webpack-plugin": "^0.9.1",
+    "postcss-loader": "^0.7.0",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
-    "react-split-pane": "^0.1.17"
+    "react-split-pane": "^0.1.17",
+    "style-loader": "^0.13.0"
   }
 }
