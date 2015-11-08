@@ -16,9 +16,13 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   ],
+  resolve: {
+    modulesDirectories: ['node_modules'],
+    extensions: [ '', '.js', '.jsx', '.css' ],
+  },
   module: {
     loaders: [{
-      test: /\.js$/,
+      test: /\.jsx?$/,
       loaders: ['babel'],
       include: path.join(__dirname, 'src')
     }]
