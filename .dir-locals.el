@@ -1,0 +1,7 @@
+((nil . ((mode . whitespace-cleanup)
+         (indent-tabs-mode . nil)
+         (js-indent-level . 2)
+         (web-mode-markup-indent-offset . 2)
+         (web-mode-markup-indent-offset . 2)
+         (web-mode-code-indent-offset . 2)
+         (web-mode-attr-indent-offset . 2))))
