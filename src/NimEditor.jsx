@@ -2,8 +2,7 @@ import React from 'react';
 import CodeMirrorEditor from 'react-code-mirror';
 import CodeMirrorNim from './nimrod';
 
-require('codemirror/lib/codemirror.css');
-require('./CodemirrorOverride.css');
+require('./CodeMirror.css');
 
 const codeMirrorStyles = {
   position: 'absolute',

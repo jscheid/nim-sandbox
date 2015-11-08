@@ -20,16 +20,19 @@ module.exports = {
   ],
   resolve: {
     modulesDirectories: ['node_modules'],
-    extensions: [ '', '.js', '.jsx', '.css' ],
+    extensions: [ '', '.js', '.jsx', '.css', '.scss'  ],
   },
   module: {
     loaders: [{
       test: /\.jsx?$/,
       loaders: ['babel'],
-      include: path.join(__dirname, 'src')
+      include: path.join(__dirname, 'src'),
     }, {
       test: /\.css$/,
-      loader: ExtractTextPlugin.extract('style-loader', 'css-loader!postcss-loader'),
+      loader: ExtractTextPlugin.extract('style', 'css?sourceMap!postcss'),
+    }, {
+      test: /\.scss$/,
+      loader: ExtractTextPlugin.extract('style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass?sourceMap'),
     }]
   }
 };
