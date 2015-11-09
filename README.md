@@ -2,6 +2,8 @@
 
 A quick hack for experimenting with Nim in the browser.
 
+https://jscheid.github.io/nim-sandbox/index.html
+
 ## Status
 
 * GC issues, workaround as per https://github.com/nim-lang/Nim/pull/3314#issuecomment-142563072
