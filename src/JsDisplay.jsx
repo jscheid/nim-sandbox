@@ -10,18 +10,17 @@ const codeMirrorStyles = {
   height: '100%',
 };
 
-export default class NimEditor extends React.Component {
+export default class JsDisplay extends React.Component {
 
   static contextTypes = {
     workerEmitter: React.PropTypes.any,
-    worker: React.PropTypes.any,
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      code: '# Example Code\necho "Hello, World!"',
-      mode: 'nimrod',
+      code: '# Generated JavaScript will appear here',
+      mode: 'javascript',
     };
     this.codeMirrorOptions = {
       lineNumbers: true
@@ -29,11 +28,8 @@ export default class NimEditor extends React.Component {
   }
 
   componentDidMount() {
-    this.context.workerEmitter.on('startCompilation', () => {
-      this.context.worker.postMessage({
-        source: this.state.code,
-        flags: [ '-d:release' ],
-      });
+    this.context.workerEmitter.on('compilation', data => {
+      this.setState({ code: data });
     });
   }
 
@@ -41,16 +37,10 @@ export default class NimEditor extends React.Component {
     return (
       <CodeMirrorEditor
         value={this.state.code}
-        onChange={::this.updateCode}
         options={this.codeMirrorOptions}
         style={codeMirrorStyles}
+        readOnly
       />
     );
-  }
-
-  updateCode(event) {
-    this.setState({
-      code: event.target.value,
-    });
   }
 }

@@ -6,16 +6,23 @@ var config = require('./webpack.config.dev');
 var app = express();
 var compiler = webpack(config);
 
+
+app.get('/static/nim-compiler.data', function(req, res) {
+  res.sendFile(path.join(__dirname, 'nim-compiler.data'));
+});
+
+app.get('/static/nim-compiler.js.mem', function(req, res) {
+  res.sendFile(path.join(__dirname, 'nim-compiler.js.mem'));
+});
+
+app.use('/public', express.static('static'));
+
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
   publicPath: config.output.publicPath
 }));
 
 app.use(require('webpack-hot-middleware')(compiler));
-
-app.get('/static/favicon.ico', function(req, res) {
-  res.sendFile(path.join(__dirname, 'favicon.ico'));
-});
 
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));

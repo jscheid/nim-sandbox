@@ -4,25 +4,41 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   devtool: 'eval',
-  entry: [
-    'webpack-hot-middleware/client',
-    './src/index'
-  ],
+  entry: {
+    main: [
+      'webpack-hot-middleware/client',
+      './src/index',
+    ],
+    worker: './src/worker',
+  },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
-    publicPath: '/static/'
+    filename: "[name].entry.js",
+    publicPath: '/static/',
   },
   plugins: [
     new ExtractTextPlugin('style.css', { allChunks: true }),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new webpack.DefinePlugin({
+      'ENVIRONMENT_IS_NODE': false,
+    }),
+
+    // new webpack.IgnorePlugin(/^node_modules\/webpack\/buildin\/module.js$/),
+    // new webpack.IgnorePlugin(/^ws$/),
+
   ],
   resolve: {
-    modulesDirectories: ['node_modules'],
+    modulesDirectories: ['', 'node_modules'],
     extensions: [ '', '.js', '.jsx', '.css', '.scss'  ],
   },
+  node: {
+    fs: "empty"
+  },
   module: {
+    // noParse: [
+    //   path.join(__dirname, "nim-compiler.js"),
+    // ],
     loaders: [{
       test: /\.jsx?$/,
       loaders: ['babel'],

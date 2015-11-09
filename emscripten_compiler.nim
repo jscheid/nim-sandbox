@@ -8,9 +8,9 @@ GC_disableMarkAndSweep()
   
 condsyms.initDefines()
 
-processCmdLine(passCmd1, "") # -d:nodejs --verbosity:3 --stdout 
+processCmdLine(passCmd1, "")
 
-gProjectName = "examples/hallo.nim"
+gProjectName = "main.nim"
 gProjectFull = canonicalizePath(gProjectName)
 gProjectPath = getCurrentDir()
 
@@ -20,19 +20,13 @@ extccomp.initVars()
 
 processCmdLine(passCmd2, "")
 
-#mainCommand()
+mainCommand()
+
 GC_fullCollect()
 
-
-proc fib1(a: cint): cint {.exportc.} =
-  resetAllModules()
-  curCaasCmd = "js -f -d:nodejs examples/hallo.nim"
-  processCmdLine(passCmd2, curCaasCmd)
-  mainCommand()
-  GC_fullCollect()
-
-proc fib2(a: cint): cint {.exportc.} =
-  curCaasCmd = "js -f -d:nodejs examples/hallo2.nim"
+proc recompile(cmd: cstring): cint {.exportc.} =
+  resetAllModulesHard()
+  curCaasCmd = $cmd
   processCmdLine(passCmd2, curCaasCmd)
   mainCommand()
   GC_fullCollect()

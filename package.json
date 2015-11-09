@@ -49,9 +49,13 @@
     "webpack-hot-middleware": "^2.0.0"
   },
   "dependencies": {
+    "ansi-html": "0.0.4",
     "codemirror": "^5.8.0",
     "css-loader": "^0.22.0",
+    "exports-loader": "^0.6.2",
     "extract-text-webpack-plugin": "^0.9.1",
+    "imports-loader": "^0.6.5",
+    "node-libs-browser": "^0.5.3",
     "node-sass": "^3.4.1",
     "normalize.css": "^3.0.3",
     "postcss-loader": "^0.7.0",
@@ -62,6 +66,7 @@
     "react-split-pane": "^0.1.17",
     "react-toolbox": "^0.11.4",
     "sass-loader": "^3.1.1",
-    "style-loader": "^0.13.0"
+    "style-loader": "^0.13.0",
+    "ws": "^0.8.0"
   }
 }
