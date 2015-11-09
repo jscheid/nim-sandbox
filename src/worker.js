@@ -9,14 +9,12 @@ const nimCompiler = {};
  * @param {ArrayBuffer} buf The buffer to convert
  * @param {Function} callback The function to call when conversion is complete
  */
-function _arrayBufferToString(buf, callback) {
-  const bb = new Blob([ new Uint8Array(buf) ]);
-  const f = new FileReader();
-  f.onload = e => callback(e.target.result);
-  f.readAsText(bb);
+function ab2str(buf) {
+  return decodeURIComponent(escape(String.fromCharCode.apply(null, buf)));
 }
 
-function str2ab(str) {
+function str2ab(s) {
+  const str = unescape(encodeURIComponent(s))
   const uint = new Uint8Array(str.length);
   for (let i = 0, j = str.length ; i < j; ++i) {
     uint[i] = str.charCodeAt(i);
@@ -50,14 +48,11 @@ nimCompiler.onRuntimeInitialized = () => {
       console.warn(e);
     }
 
-    _arrayBufferToString(
-      nimCompiler.FS.lookupPath('/nimcache/main.js', {}).node.contents,
-      text => {
-        postMessage({
-          type: 'compilation',
-          data: text,
-        })
-      });
+    const data = ab2str(nimCompiler.FS.lookupPath('/nimcache/main.js', {}).node.contents);
+    postMessage({
+      type: 'compilation',
+      data,
+    });
   };
 
   postMessage({
