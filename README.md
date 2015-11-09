@@ -15,6 +15,15 @@ A quick hack for experimenting with Nim in the browser.
 
 * Probably many others, this is barely tested. If it breaks, you get to keep all the shiny pieces!
 
+* No tests
+
+## Build
+
+* Install Node.js and Emscripten SDK, set up env
+* `npm install`
+* `npm start` to run the development server
+* `npm run build` to create the distribution
+
 ## License
 
 MIT
