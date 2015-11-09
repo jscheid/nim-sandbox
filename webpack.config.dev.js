@@ -23,10 +23,6 @@ module.exports = {
     new webpack.DefinePlugin({
       'ENVIRONMENT_IS_NODE': false,
     }),
-
-    // new webpack.IgnorePlugin(/^node_modules\/webpack\/buildin\/module.js$/),
-    // new webpack.IgnorePlugin(/^ws$/),
-
   ],
   resolve: {
     modulesDirectories: ['', 'node_modules'],
@@ -36,9 +32,6 @@ module.exports = {
     fs: "empty"
   },
   module: {
-    // noParse: [
-    //   path.join(__dirname, "nim-compiler.js"),
-    // ],
     loaders: [{
       test: /\.jsx?$/,
       loaders: ['babel'],
