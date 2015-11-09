@@ -8,6 +8,19 @@ export default class ToolBar extends React.Component {
     workerEmitter: React.PropTypes.any,
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      code: '',
+    };
+  }
+
+  componentDidMount() {
+    this.context.workerEmitter.on('compilation', code => {
+      this.setState({ code });
+    });
+  }
+
   render() {
     return (
       <AppBar flat style={{ flexGrow: 0, flexShrink: 0 }}>
@@ -30,6 +43,9 @@ export default class ToolBar extends React.Component {
   }
 
   handleRunClicked() {
-    console.log("run clicked");
+    const emitter = this.context.workerEmitter;
+    emitter.emit('clearOutput');
+    const rawEcho = 'function rawEcho() { for (var i = 0; i < arguments.length; ++i) emitter.emit("output", toJSStr(arguments[i])); }';
+    eval(rawEcho + this.state.code.replace('function rawEcho', 'function _rawEcho'));
   }
 }

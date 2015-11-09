@@ -3,6 +3,7 @@ import CodeMirrorEditor from 'react-code-mirror';
 import CodeMirrorNim from './nimrod';
 
 require('./CodeMirrorStyle.css');
+require('codemirror/mode/javascript/javascript');
 
 const codeMirrorStyles = {
   position: 'absolute',
@@ -19,8 +20,7 @@ export default class JsDisplay extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      code: '# Generated JavaScript will appear here',
-      mode: 'javascript',
+      code: '// Generated JavaScript will appear here',
     };
     this.codeMirrorOptions = {
       lineNumbers: true
@@ -37,7 +37,9 @@ export default class JsDisplay extends React.Component {
     return (
       <CodeMirrorEditor
         value={this.state.code}
-        options={this.codeMirrorOptions}
+        mode='javascript'
+        theme='material'
+        lineNumbers={true}
         style={codeMirrorStyles}
         readOnly
       />

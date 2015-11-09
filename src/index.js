@@ -4,7 +4,7 @@ import Application from './App';
 import EventEmitter from 'events';
 
 const workerEmitter = new EventEmitter({});
-const worker = new Worker('/static/worker.entry.js');
+const worker = new Worker(typeof(workerUrl) !== 'undefined' ? workerUrl : '/static/worker.entry.js');
 worker.onmessage = event => {
   workerEmitter.emit(event.data.type, event.data.data);
 };

@@ -5,6 +5,7 @@ import NimEditor from './NimEditor';
 import JsDisplay from './JsDisplay';
 import ToolBar from './ToolBar';
 import StderrDisplay from './StderrDisplay';
+import OutputDisplay from './OutputDisplay';
 
 require('./ReactSplitPane.css');
 
@@ -27,7 +28,10 @@ export default class Application extends React.Component {
         <ToolBar/>
         <div style={{ position: 'relative', width: '100%', flexGrow: 1 }}>
           <SplitPane split="vertical" minSize="50">
-            <NimEditor/>
+            <SplitPane split="horizontal">
+              <NimEditor/>
+              <OutputDisplay/>
+            </SplitPane>
             <SplitPane split="horizontal">
               <JsDisplay/>
               <StderrDisplay/>

@@ -3,6 +3,7 @@ import CodeMirrorEditor from 'react-code-mirror';
 import CodeMirrorNim from './nimrod';
 
 require('./CodeMirrorStyle.css');
+require('codemirror/theme/material.css');
 
 const codeMirrorStyles = {
   position: 'absolute',
@@ -21,10 +22,6 @@ export default class NimEditor extends React.Component {
     super(props);
     this.state = {
       code: '# Example Code\necho "Hello, World!"',
-      mode: 'nimrod',
-    };
-    this.codeMirrorOptions = {
-      lineNumbers: true
     };
   }
 
@@ -40,10 +37,13 @@ export default class NimEditor extends React.Component {
   render() {
     return (
       <CodeMirrorEditor
+        {...this.codeMirrorOptions}
         value={this.state.code}
         onChange={::this.updateCode}
-        options={this.codeMirrorOptions}
         style={codeMirrorStyles}
+        mode="nimrod"
+        theme="material"
+        lineNumbers={true}
       />
     );
   }
