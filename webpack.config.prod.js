@@ -1,8 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var AssetsPlugin = require('assets-webpack-plugin');
-var assetsPluginInstance = new AssetsPlugin();
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
@@ -28,7 +26,6 @@ module.exports = {
         warnings: false
       }
     }),
-    assetsPluginInstance,
     new HtmlWebpackPlugin({
       title: 'Nim Sandbox',
       template: 'prod_index.html',

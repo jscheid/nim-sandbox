@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <title>{%=o.htmlWebpackPlugin.options.title || 'Webpack App'%}</title>
     {% if (o.htmlWebpackPlugin.files.favicon) { %}
-    <link rel="shortcut icon" href="{%=o.htmlWebpackPlugin.files.favicon%}">
+    <link rel="shortcut icon" href="{%= o.htmlWebpackPlugin.files.favicon.replace(/^\//, '') %}">
     {% } %}
     {% for (var css in o.htmlWebpackPlugin.files.css) { %}
-    <link href="{%=o.htmlWebpackPlugin.files.css[css] %}" rel="stylesheet">
+    <link href="{%=o.htmlWebpackPlugin.files.css[css].replace(/^\//, '') %}" rel="stylesheet">
     {% } %}
   </head>
   <body>
     <div id='root'></div>
-    <script>var workerUrl = "{%=o.htmlWebpackPlugin.files.chunks['worker'].entry %}";</script>
-    <script src="{%=o.htmlWebpackPlugin.files.chunks['main'].entry %}"></script>
+    <script>var workerUrl = "{%=o.htmlWebpackPlugin.files.chunks['worker'].entry.replace(/^\//, '') %}";</script>
+    <script src="{%=o.htmlWebpackPlugin.files.chunks['main'].entry.replace(/^\//, '') %}"></script>
   </body>
 </html>
